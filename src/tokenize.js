@@ -6,7 +6,7 @@
  * @version 0.0.1
  * @desc tokenize.ts  State-Number:10 TokenType-Number:3
  * @attention parsing for comment and document type is not considered.
- * Fault tolerance is important,and unfortunately I have't added it yet.
+ * Fault tolerance is important,but unfortunately I have't added it yet.
  * I will do it in some time.
  * @reference html5parser by acrazing
  */
