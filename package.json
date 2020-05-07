@@ -1,0 +1,9 @@
+{
+  "name": "HtmlToJson",
+  "version": "0.0.1",
+  "description": "html tokenize and parse html into vdom",
+  "main": "index.js",
+  "repository": "https://github.com/chuifengji/HtmlToJson",
+  "author": "Ethan.Lv",
+  "license": "MIT"
+}
