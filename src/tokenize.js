@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /***
  * Copyright 2020 Ethan_Lv
  * @author Ethan_Lv ldlandchuifengji@gmail.com
@@ -6,7 +7,7 @@
  * @version 0.0.1
  * @desc tokenize.ts  State-Number:10 TokenType-Number:3
  * @attention parsing for comment and document type is not considered.
- * Fault tolerance is important,and unfortunately I have't added it yet.
+ * Fault tolerance is important,but unfortunately I have't added it yet.
  * I will do it in some time.
  * @reference html5parser by acrazing
  */
@@ -193,7 +194,7 @@ var atAfterAttributeValueQuotedState = function () {
         state = State.AttributeNameState;
     }
     else if (char === Chars.Gt) {
-        pushToken(TokenType.StartTag, sectionStart, index, true, attrs);
+        pushToken(TokenType.StartTag, sectionStart, index, false, attrs);
         state = State.defaultState;
         attrs = {};
         tagName = "";
@@ -265,3 +266,5 @@ function tokenize(input) {
     }
     return tokens;
 }
+exports.tokenize = tokenize;
+console.log(tokenize("<div title=\"\u8868\u683C\" class=\"wxml_editor_icon\" id=\"wxml_editor_table\"><i class=\"iconfont iconbiaoge icon_font_size\"></i><br/></div>\n<div title=\"\u9996\u884C\u7F29\u8FDB\" class=\"wxml_editor_icon\" id=\"wxml_editor_indent\"><i class=\"iconfont iconshouhangsuojin icon_font_size\"></i></div>"));

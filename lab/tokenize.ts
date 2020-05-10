@@ -5,7 +5,7 @@
  * @version 0.0.1
  * @desc tokenize.ts  State-Number:10 TokenType-Number:3
  * @attention parsing for comment and document type is not considered.
- * Fault tolerance is important,and unfortunately I have't added it yet.
+ * Fault tolerance is important,but unfortunately I have't added it yet.
  * I will do it in some time.
  * @reference html5parser by acrazing
  */
@@ -193,7 +193,7 @@ let atAfterAttributeValueQuotedState = function () {
     attrStart = index;
     state = State.AttributeNameState;
   } else if (char === Chars.Gt) {
-    pushToken(TokenType.StartTag, sectionStart, index, true, attrs);
+    pushToken(TokenType.StartTag, sectionStart, index, false, attrs);
     state = State.defaultState;
     attrs = {};
     tagName = "";
@@ -221,7 +221,7 @@ let unexpected = function () {
     `Unexpected token "${buffer.charAt(index)}" at ${index} when parse ${state}`
   );
 };
-function tokenize(input: string) {
+export function tokenize(input: string) {
   init(input);
   while (index < bufSize) {
     char = buffer.charCodeAt(index);
@@ -264,3 +264,7 @@ function tokenize(input: string) {
   }
   return tokens;
 }
+console.log(
+  tokenize(`<div title="表格" class="wxml_editor_icon" id="wxml_editor_table"><i class="iconfont iconbiaoge icon_font_size"></i><br/></div>
+<div title="首行缩进" class="wxml_editor_icon" id="wxml_editor_indent"><i class="iconfont iconshouhangsuojin icon_font_size"></i></div>`)
+);
