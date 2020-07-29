@@ -117,6 +117,7 @@ let parser = function (TOKENS: Array<any>) {
           MytokenStack.removeElement();
         } else {
           OutPutStack.addElement(MytokenStack.getFirst());
+          MytokenStack.removeElement();//fix 2007029
         }
       } else {
         let item = {

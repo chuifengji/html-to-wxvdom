@@ -1,6 +1,6 @@
 {
   "name": "html-to-wxvdom",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "html tokenize and parse html into vdom",
   "main": "dist/index.js",
   "repository": {
