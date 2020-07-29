@@ -1,9 +1,25 @@
 {
-  "name": "HtmlToJson",
+  "name": "html-to-wxvdom",
   "version": "0.0.1",
   "description": "html tokenize and parse html into vdom",
-  "main": "index.js",
-  "repository": "https://github.com/chuifengji/HtmlToJson",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuifengji/html-to-wxvdom.git"
+  },
   "author": "Ethan.Lv",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chuifengji/html-to-wxvdom/issues"
+  },
+  "homepage": "https://github.com/chuifengji/html-to-wxvdom#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vdom",
+    "wxml",
+    "html",
+    "json"
+  ]
 }

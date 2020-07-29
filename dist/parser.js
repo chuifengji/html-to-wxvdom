@@ -78,7 +78,7 @@ var parser = function (TOKENS) {
         else {
             if (element.type === "Content") {
                 var item = { type: element.type, text: element.content };
-                MytokenStack.changePrev(item);
+                MytokenStack.changePrevSelf(item);
             }
             else if (element.selfClosing) {
                 var item = {

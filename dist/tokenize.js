@@ -51,8 +51,11 @@ function clearVoidSpace(input) {
 function clearComment(input) {
     return input;
 }
+function rexSelfClosingTag(input) {
+    return input.replace("<br>", "<br/>").replace("<hr>", "<hr/>");
+}
 function init(input) {
-    clearVoidSpace(clearComment(input));
+    rexSelfClosingTag(clearVoidSpace(clearComment(input)));
     state = State.defaultState;
     buffer = input;
     bufSize = input.length;

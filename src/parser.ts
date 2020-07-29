@@ -94,7 +94,7 @@ let parser = function (TOKENS: Array<any>) {
     } else {
       if (element.type === "Content") {
         let item = { type: element.type, text: element.content };
-        MytokenStack.changePrev(item);
+        MytokenStack.changePrevSelf(item);
       } else if (element.selfClosing) {
         let item = {
           name: element.tagName,
