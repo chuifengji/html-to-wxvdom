@@ -264,7 +264,4 @@ export function tokenize(input: string) {
   }
   return tokens;
 }
-console.log(
-  tokenize(`<div title="表格" class="wxml_editor_icon" id="wxml_editor_table"><i class="iconfont iconbiaoge icon_font_size"></i><br/></div>
-<div title="首行缩进" class="wxml_editor_icon" id="wxml_editor_indent"><i class="iconfont iconshouhangsuojin icon_font_size"></i></div>`)
-);
+

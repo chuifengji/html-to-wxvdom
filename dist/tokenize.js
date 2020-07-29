@@ -267,4 +267,3 @@ function tokenize(input) {
     return tokens;
 }
 exports.tokenize = tokenize;
-console.log(tokenize("<div title=\"\u8868\u683C\" class=\"wxml_editor_icon\" id=\"wxml_editor_table\"><i class=\"iconfont iconbiaoge icon_font_size\"></i><br/></div>\n<div title=\"\u9996\u884C\u7F29\u8FDB\" class=\"wxml_editor_icon\" id=\"wxml_editor_indent\"><i class=\"iconfont iconshouhangsuojin icon_font_size\"></i></div>"));

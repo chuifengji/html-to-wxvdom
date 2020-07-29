@@ -130,3 +130,5 @@ let parser = function (TOKENS: Array<any>) {
   });
   return OutPutStack.getAll();
 };
+
+export default parser;
