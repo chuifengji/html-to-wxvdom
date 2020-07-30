@@ -10,7 +10,7 @@
  * @reference html5parser by acrazing
  */
 enum TokenType {
-  Content = "Content",
+  Text = "text",
   StartTag = "StartTag", //self-closing tag is also belong to it
   EndTag = "EndTag",
 }
@@ -32,23 +32,27 @@ interface TokenBase {
   start: number;
   end: number;
   type: TokenType;
+  tagName?: string;
+  selfClosing?: boolean;//whether the label is self-closing
+  content?: string;
+  attrs?: any;
 }
-interface TokenTag extends TokenBase {
-  tagName: string;
-}
-interface TokenContent extends TokenBase {
-  content: string;
-}
-interface TokenST extends TokenBase {
-  attrs: any;
-  selfClosing: boolean; //whether the label is self-closing
-}
+// interface TokenTag extends TokenBase {
+//   tagName: string;
+// }
+// interface TokenContent extends TokenBase {
+//   content: string;
+// }
+// interface TokenST extends TokenBase {
+//   attrs: any;
+//   selfClosing: boolean; //whether the label is self-closing
+// }
 let state: State;
 let buffer: string;
 let bufSize: number;
 let sectionStart: number; // the starting position of the token,not accurate.
 let index: number; // the current location
-let tokens: (TokenST | TokenTag | TokenContent)[]; // parsed list of tokens
+let tokens: TokenBase[]; // parsed list of tokens
 let char: number; // the unicode number of the character at the current parse position
 let attrs: any; //the list of props being processed
 let attrName: string;
@@ -62,11 +66,12 @@ function clearVoidSpace(input: string) {
 function clearComment(input: string) {
   return input;
 }
+//取消使用，改为遍历替换。
 function rexSelfClosingTag(input: string) {
   return input.replace("<br>", "<br/>").replace("<hr>", "<hr/>")
 }
 function init(input: string) {
-  rexSelfClosingTag(clearVoidSpace(clearComment(input)));
+  input = clearVoidSpace(clearComment(input));
   state = State.defaultState;
   buffer = input;
   bufSize = input.length;
@@ -102,7 +107,7 @@ let pushToken = function (
       let tagName = buffer.substring(start, end);
       tokens.push({ start, end, type, tagName, selfClosing, attrs });
     }
-  } else if (type === TokenType.Content) {
+  } else if (type === TokenType.Text) {
     let content = buffer.substring(sectionStart, index);
     tokens.push({ start, end, type, content });
   } else {
@@ -123,7 +128,7 @@ let atdefaultState = function () {
 };
 let atDataState = function () {
   if (char === Chars.Lt) {
-    pushToken(TokenType.Content, sectionStart, index);
+    pushToken(TokenType.Text, sectionStart, index);
     state = State.TagOpenState;
   } else if (char === Chars.Gt) {
     state = State.defaultState;
@@ -267,4 +272,3 @@ export function tokenize(input: string) {
   }
   return tokens;
 }
-

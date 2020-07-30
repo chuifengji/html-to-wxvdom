@@ -73,7 +73,7 @@ let parser = function (TOKENS: Array<any>) {
   let OutPutStack = new tokenStack();
   TOKENS.forEach((element) => {
     if (MytokenStack.isempty()) {
-      if (element.type === "Content") {
+      if (element.type === "text") {
         let item = { type: element.type, text: element.content };
         OutPutStack.addElement(item);
       } else if (element.selfClosing) {
@@ -92,7 +92,7 @@ let parser = function (TOKENS: Array<any>) {
         MytokenStack.addElement(item);
       }
     } else {
-      if (element.type === "Content") {
+      if (element.type === "text") {
         let item = { type: element.type, text: element.content };
         MytokenStack.changePrevSelf(item);
       } else if (element.selfClosing) {
@@ -117,7 +117,7 @@ let parser = function (TOKENS: Array<any>) {
           MytokenStack.removeElement();
         } else {
           OutPutStack.addElement(MytokenStack.getFirst());
-          MytokenStack.removeElement();//fix 2007029
+          MytokenStack.removeElement();//fix 2007029 
         }
       } else {
         let item = {
